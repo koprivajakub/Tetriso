@@ -10,7 +10,6 @@ Playfield.prototype = {
     init: function() {
         this.playMatrix = new PlayMatrix(22, 10);
         this.playMatrix.init();
-        this.playMatrix.displayMatrix();
         this.drawGrid();
         this.runLoop();
     },
@@ -34,8 +33,8 @@ Playfield.prototype = {
         var _this = this;
         _this.startNewTermino();
         setInterval(function(){
+            _this.moveTerminoDown();
             _this.redraw();
-            _this.moveTermino();
         },2000);
 
     },
@@ -43,10 +42,6 @@ Playfield.prototype = {
     startNewTermino: function() {
         this.termino = new Termino('I');
         this.playMatrix.startTermino(this.termino);
-    },
-
-    moveTermino: function() {
-        this.termino.y += 1;
     },
 
     redraw: function() {
@@ -65,6 +60,25 @@ Playfield.prototype = {
                 }
             }
         }
-    }
+    },
+
+    moveTerminoLeft: function() {
+        this.termino.x -= 1;
+        this.redraw();
+    },
+
+    rotateTermino: function() {
+
+    },
+
+    moveTerminoRight: function() {
+        this.termino.x += 1;
+        this.redraw();
+    },
+
+    moveTerminoDown: function() {
+        this.termino.y += 1;
+        this.redraw();
+    },
 
 };

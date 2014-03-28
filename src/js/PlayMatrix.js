@@ -44,7 +44,6 @@ PlayMatrix.prototype = {
                 }
             }
         }
-        console.log(matrix);
         return matrix;
     }
 
