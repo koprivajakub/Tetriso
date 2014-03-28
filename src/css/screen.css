@@ -1,0 +1,10 @@
+#content {
+	margin: 0 auto;
+	width: 640px;
+	overflow: hidden;
+}
+#content canvas#playfield {
+	background: #4bb8fa;
+/*	width: 160px; */
+/*	height: 352px; */
+}
