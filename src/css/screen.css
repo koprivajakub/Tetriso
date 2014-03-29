@@ -3,8 +3,19 @@
 	width: 640px;
 	overflow: hidden;
 }
+
+#content canvas {
+	float:left;
+}
+
 #content canvas#playfield {
-	background: #4bb8fa;
+	background: #ddd;
 /*	width: 160px; */
 /*	height: 352px; */
+}
+#content canvas#leftField {
+	background: #eee;
+}
+#content canvas#rightField {
+	background: #ccc;
 }

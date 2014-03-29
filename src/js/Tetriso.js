@@ -1,24 +1,25 @@
-function Tetriso() {
+function Tetriso(sizeY, sizeX) {
+	this.init(sizeY+5, sizeX);
 }
 
 Tetriso.prototype = {
 
-    init: function() {
-        this.playfield = new Playfield();
+    init: function(sizeY, sizeX) {
+        this.playfield = new Playfield(sizeY, sizeX);
         this.playfield.init();
         this.initKeyBindings();
     },
 
-    initKeyBindings: function() {
-    	_this = this;
-    	$(document).bind('keypress', function(event) {
+    initKeyBindings: function() {   
+    	var _this = this;
+    	$(document).keypress(function(event) {
     		switch (event.keyCode) {
     			case 37:
-    				console.log('Left');
+    				_this.moveTermino('L');
     				event.preventDefault();
     				break;
     			case 38:
-    				console.log('Top');
+    				_this.moveTermino('T');
     				event.preventDefault();
     				break;
 				case 39:

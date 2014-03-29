@@ -1,2 +1,1 @@
-var Tetriso = new Tetriso();
-Tetriso.init();
+var Tetriso = new Tetriso(22,10);
