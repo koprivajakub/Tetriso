@@ -36,7 +36,7 @@ PlayMatrix.prototype = {
                 matrix[i][j] = this.matrix[i][j];
             }
         }
-        if (this.termino) {
+        if (this.termino) {            
             var terminoMatrix = this.termino.getTerminoMatrix();
             for (i = 0; i < terminoMatrix.length; i++) {
                 for (j = 0; j < terminoMatrix[i].length; j++) {
@@ -70,6 +70,7 @@ PlayMatrix.prototype = {
                         if (matrix[termino.y+dy+i][termino.x+dx+j] !== 0) {
                             // NEMUŽU SE TAM HNOUT
                             if (termino.y+i <= 5) {
+                                // Přesunout do Playfield check na Game Over
                                 alert('GAME OVER');
                             }
                             return false;
@@ -81,7 +82,7 @@ PlayMatrix.prototype = {
         return true;
     },
 
-    sealTermino: function(termino) {               
+    sealTermino: function(termino) {
         if (termino.y > 2) {
             var terminoMatrix = termino.getTerminoMatrix();
             for (i = 0; i < terminoMatrix.length; i++) {

@@ -89,7 +89,7 @@ Playfield.prototype = {
     },
 
     rotateTermino: function() {
-        this.termino.rotate();
+        this.termino.rotate();        
         this.redraw();
     },
 

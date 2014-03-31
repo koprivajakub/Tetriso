@@ -12,8 +12,8 @@ Tetriso.prototype = {
 
     initKeyBindings: function() {   
     	var _this = this;
-    	$(document).keypress(function(event) {
-    		switch (event.keyCode) {
+    	$(document).keydown(function(event) {
+    		switch (event.keyCode) {    			
     			case 37:
     				_this.moveTermino('L');
     				event.preventDefault();

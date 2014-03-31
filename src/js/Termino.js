@@ -1,6 +1,7 @@
 function Termino(type) {    
     this.x = 0;
-    this.y = 0;
+    this.y = 0;    
+    this.rotation = 0;
     switch (type) {
         case 'I':
             this.type = 1;
@@ -27,7 +28,8 @@ function Termino(type) {
     this.init(type);
 }
 
-Termino.prototype = { 
+Termino.prototype = {
+
     init: function(type) {
         switch (type) {
             case 'I':
@@ -63,43 +65,43 @@ Termino.prototype = {
 
     getTerminoI: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(0, 0, 0, 0), new Array(X, X, X, X));
+        var termino = [[0,0,0,0], [0,0,0,0], [X, X, X, X], [0, 0, 0, 0]];
         return termino;
     },
 
     getTerminoO: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(0, X, X, 0), new Array(0, X, X, 0));
+        var termino = [[0,0,0,0], [0,0,0,0], [0, X, X, 0], [0, X, X, 0]];
         return termino;
     },
 
     getTerminoT: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(0, X, 0, 0), new Array(X, X, X, 0));
+        var termino = [[0,0,0], [0, X, 0], [X, X, X]];
         return termino;
     },
 
     getTerminoS: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(0, X, X, 0), new Array(X, X, 0, 0));
+        var termino = [[0,0,0,0], [0,0,0,0], [0, X, X, 0], [X, X, 0, 0]];
         return termino;
     },
 
     getTerminoZ: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(X, X, 0, 0), new Array(0, X, X, 0));
+        var termino = [[0,0,0,0], [0,0,0,0], [X, X, 0, 0], [0, X, X, 0]];
         return termino;
     },
 
     getTerminoJ: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(X, 0, 0, 0), new Array(X, X, X, 0));
+        var termino = [[0,0,0,0], [0,0,0,0], [X, 0, 0, 0], [X, X, X, 0]];
         return termino;
     },
 
     getTerminoL: function() {
         var X = this.type;
-        var termino = new Array(new Array(0,0,0,0), new Array(0,0,0,0), new Array(0, 0, X, 0), new Array(X, X, X, 0));
+        var termino = [[0,0,0,0], [0,0,0,0], [0, 0, X, 0], [X, X, X, 0]];
         return termino;
     },
 
@@ -120,6 +122,90 @@ Termino.prototype = {
     },
 
     rotate: function() {
-        
-    }
+
+        switch(this.type) {
+            case 1:                
+                this.terminoMatrix = this.getRotationMatrixI();
+                break;
+            case 2:
+                this.terminoMatrix = this.getRotationMatrixO();
+                break;
+            case 3:
+                this.terminoMatrix = this.getRotationMatrixT();
+                break;
+            case 4:
+                this.terminoMatrix = this.getRotationMatrixS();
+                break;
+            case 5:
+                this.terminoMatrix = this.getRotationMatrixZ();
+                break;
+            case 6:
+                this.terminoMatrix = this.getRotationMatrixJ();
+                break;
+            case 7:
+                this.terminoMatrix = this.getRotationMatrixL();
+                break;
+        }
+    },
+
+    getRotationMatrixI: function() {
+        var X = this.type;        
+        switch (this.rotation) {            
+            case 0:
+                this.rotation = 1;
+                return [[0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0]];
+            case 1:
+                this.rotation = 2;
+                return [[0, 0, 0, 0], [0, 0, 0, 0], [X, X, X, X], [0, 0, 0, 0]];
+            case 2:
+                this.rotation = 3;
+                return [[0, X, 0, 0], [0, X, 0, 0], [0, X, 0, 0], [0, X, 0, 0]];
+            case 3:
+                this.rotation = 0;
+                return [[0, 0, 0, 0], [0, 0, 0, 0], [X, X, X, X], [0, 0, 0, 0]];
+        }
+    },
+
+    getRotationMatrixO: function() {
+        var X = this.type;
+        return [[0,0,0,0], [0,0,0,0], [0, X, X, 0], [0, X, X, 0]];
+    },
+
+    getRotationMatrixT: function() {
+        var X = this.type;
+        switch (this.rotation) {            
+            case 0:
+                this.rotation = 1;
+                return [[0,X,0], [0, X, X], [0, X, 0]];
+            case 1:
+                this.rotation = 2;
+                return [[0,0,0], [X, X, X], [0, X, 0]];
+            case 2:
+                this.rotation = 3;
+                return [[0,X,0], [X, X, 0], [0, X, 0]];
+            case 3:
+                this.rotation = 0;
+                return [[0,0,0], [0, X, 0], [X, X, X]];
+        }        
+    },
+
+    getRotationMatrixS: function() {
+        var X = this.type;
+        return [[0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0]];
+    },
+
+    getRotationMatrixZ: function() {
+        var X = this.type;
+        return [[0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0]];
+    },
+
+    getRotationMatrixJ: function() {
+        var X = this.type;
+        return [[0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0]];
+    },
+
+    getRotationMatrixL: function() {
+        var X = this.type;
+        return [[0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0], [0, 0, X, 0]];
+    },
 };
