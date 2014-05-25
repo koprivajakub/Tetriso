@@ -1,1 +1,1 @@
-var Tetriso = new Tetriso(22,10);
+var Tetriso = new Tetriso(16,10);
