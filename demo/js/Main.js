@@ -1,0 +1,1 @@
+var Tetriso = new Tetriso(16,10);
