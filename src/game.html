@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/screen.css">
+</head>
+
+<body>
+	<div id="message-center">
+	</div>	
+    <div id="content">
+        <div class="align-left" id="leftPane">
+            <aside>
+                Stash
+            </aside>
+            <canvas id="leftField" width="128px" height="128px"></canvas>
+            <nav id="menu">
+            <h2>Menu</h2>
+            <div>&darr; &darr; &darr;</div>
+                <ul>
+                    <li><a href="#info">Info</a>
+                    </li>
+                    <li><a href="#controls">Controls</a>
+                    </li>
+                    <li><a href="#play">Play</a>
+                    </li>
+                    <li><a href="#restart">Restart</a>
+                    </li>
+                    <!-- <li><a href="#high-score">High score</a>
+                    </li> -->
+                    <li><a href="#mute">Mute sounds</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="align-left" id="tetrisGame">
+            <canvas id="playfield" width="320px" height="704px"></canvas>
+        </div>
+        <div class="align-left" id="rightPane">
+            <aside>
+                Next termino
+            </aside>
+            <canvas id="rightField" width="128px" height="128px"></canvas>
+            <div id="score">
+                <aside id="lines-number">
+                    Lines
+                    <br />
+                    0
+                </aside>
+                <aside id="score-number">
+                    Score
+                    <br />
+                    0
+                </aside>
+                <aside id="level-number">
+                    Level
+                    <br />
+                    1
+                </aside>
+            </div>
+        </div>
+        <script src="js/libs/jquery-2.1.0.min.js"></script>
+        <script src="js/libs/jcanvas.min.js"></script>
+        <script src="js/libs/howler.min.js"></script>
+
+        <script type="text/javascript" src="js/Tetriso.js"></script>
+        <script type="text/javascript" src="js/Termino.js"></script>
+        <script type="text/javascript" src="js/PlayMatrix.js"></script>
+        <script type="text/javascript" src="js/Playfield.js"></script>
+
+        <script type="text/javascript" src="js/Main.js"></script>
+</body>
+
+</html>

@@ -14,8 +14,8 @@ PlayMatrix.prototype = {
         }
     },
 
-    getMatrixArray: function() {
-        return this.getMatrixWithTermino();
+    getMatrix: function() {
+        return this.matrix;
     },
 
     displayMatrix: function() {
@@ -69,10 +69,6 @@ PlayMatrix.prototype = {
                         }
                         if (matrix[termino.y+dy+i][termino.x+dx+j] !== 0) {
                             // NEMUŽU SE TAM HNOUT
-                            if (termino.y+i <= 5) {
-                                // Přesunout do Playfield check na Game Over
-                                alert('GAME OVER');
-                            }
                             return false;
                         }
                     }
@@ -83,18 +79,15 @@ PlayMatrix.prototype = {
     },
 
     sealTermino: function(termino) {
-        if (termino.y > 2) {
-            var terminoMatrix = termino.getTerminoMatrix();
-            for (i = 0; i < terminoMatrix.length; i++) {
-                for (j = 0; j < terminoMatrix[i].length; j++) {
-                    if (terminoMatrix[i][j] !== 0) {
-                        this.matrix[termino.y+i][termino.x+j] = terminoMatrix[i][j];
-                    }
+        var terminoMatrix = termino.getTerminoMatrix();
+        for (i = 0; i < terminoMatrix.length; i++) {
+            for (j = 0; j < terminoMatrix[i].length; j++) {
+                if (terminoMatrix[i][j] !== 0) {
+                    this.matrix[termino.y+i][termino.x+j] = terminoMatrix[i][j];
                 }
             }
-            return true;
         }
-        return false;
+        return true;
     }
 
 

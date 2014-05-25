@@ -1,21 +1,119 @@
+body {
+	font-family: arial;
+}
 #content {
 	margin: 0 auto;
 	width: 640px;
 	overflow: hidden;
-}
-
-#content canvas {
-	float:left;
+	background: url('../img/logo.png') no-repeat;
 }
 
 #content canvas#playfield {
-	background: #ddd;
 /*	width: 160px; */
 /*	height: 352px; */
 }
-#content canvas#leftField {
-	background: #eee;
+#content #leftPane {
+	margin: 0 10px 0 0;
+	text-align: center;	
 }
-#content canvas#rightField {
-	background: #ccc;
+#content #rightPane {
+	margin: 0 0 0 10px;
+	text-align: center;	
+}
+
+.align-left {
+	float: left;
+}
+
+.align-right {
+	float: right;
+}
+
+h2 {
+	font-size: 100%;
+	margin: 0;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+nav#menu {
+	padding: 10px 0;
+	color: #fff;
+	background: rgba(25,25,25,0.7);
+	height: 2em;
+	overflow: hidden;
+	transition: all .25s ease;	
+}
+
+nav#menu:hover {
+	color: #fff;
+	background: rgba(25,25,25,0.7);
+	height: 320px;	
+}
+
+nav#menu ul {
+	padding: 0 10px;
+	list-style: none;
+	text-align: left;
+}
+
+nav#menu ul li::first-letter {
+	font-size: 150%;
+}
+
+nav#menu ul li a {
+	color: #fff;
+	text-decoration: none;
+	font-style: italic;
+}
+
+div#message-center {
+	position: absolute;
+	top: 10%;		
+	left: 50%;
+}
+
+div#message {
+	border-radius: 10px;
+	line-height: 50px;
+	text-align: center;
+	text-shadow: 2px 2px #000;
+	text-transform: uppercase;
+	color: #fff;
+	position: relative;
+	left: -140px;
+	width: 240px;
+	height: 50px;
+	background: rgba(250,250,250,0.4);
+}
+
+div#info {
+	margin: 10px 0 0 0;
+	border-radius: 10px;
+	line-height: 1em;
+	text-align: left;
+	text-shadow: 2px 2px #999;
+	padding: 10px;
+	color: #000;
+	position: relative;
+	left: -172px;
+	width: 280px;
+	height: 250px;
+	background: rgba(250,250,250,0.8);
+}
+
+div#info a {
+	color: #000;	
+}
+
+div#info h2 {
+	text-align: center;
+	font-size: 2em;
+	margin: 10px;
+}
+
+div#score {
+	height: 320px;
+	color: #fff;
+	background: rgba(25,25,25,0.7);
 }
