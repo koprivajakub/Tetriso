@@ -10,7 +10,7 @@ function Tetriso(sizeY, sizeX) {
     this.infoDiv.innerHTML = '<h2>Info</h2>Tetriso is JavaScript Tetris with minor game design improvements. It is developed as semestral project at CTU in Prague on course (KAJ - Client Applications in JavaScript). It\'s now in early development phase, it should be finished until July of 2014. I hope you will enjoy this little JavaScript game and if you would like to contribute, I will be more than happy to hear from you. <br /> <br /> <a href="http://github.com/koprivajakub/Tetriso">GitHub Project</a>';        
     this.controlsDiv = document.createElement('div');
     this.controlsDiv.setAttribute('id', 'info');
-    this.controlsDiv.innerHTML = '<h2>Controls</h2>Control falling termino by keyboard arrows. <br /> <br /> By \'Q\' key you can put current termino on hold for later use.';
+    this.controlsDiv.innerHTML = '<h2>Controls</h2>Control falling termino by keyboard arrows. <br /> For ROTATION use \'UP ARROW\'<br /> <br /> By \'Q\' key you can put current termino on hold for later use.';
 }
 
 Tetriso.prototype = {
