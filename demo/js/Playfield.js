@@ -444,21 +444,18 @@ Playfield.prototype = {
             case 2:
                 this.score += (this.level*100);
                 message.innerHTML = '!! GREAT !!';
-                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 3:
                 this.score += (this.level*300);
                 message.innerHTML = '!!! AWESOME !!!';
-                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 4:
                 this.score += (this.level*1200);
                 message.innerHTML = '!!!! SPECTACULAR !!!!';
-                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;    
