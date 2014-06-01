@@ -432,30 +432,33 @@ Playfield.prototype = {
                 }
             }
         }
-        var message = $('<div></div>');
-        message.attr('id', 'message');
+        var message = document.createElement('div');
+        message.setAttribute('id', 'message');
         switch (lines) {
             case 1:
                 this.score += (this.level*40);
-                message.html('! GOOD !');
+                message.innerHTML = '! GOOD !';
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 2:
                 this.score += (this.level*100);
-                message.html('!! GREAT !!');
+                message.innerHTML = '!! GREAT !!';
+                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 3:
                 this.score += (this.level*300);
-                message.html('!!! AWESOME !!!');
+                message.innerHTML = '!!! AWESOME !!!';
+                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 4:
                 this.score += (this.level*1200);
-                message.html('!!!! SPECTACULAR !!!!');
+                message.innerHTML = '!!!! SPECTACULAR !!!!';
+                this.messageCenter.appendChild(message);
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;    
