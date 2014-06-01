@@ -232,7 +232,7 @@ Tetriso.prototype = {
         }
         this.scoreDiv = $('<div></div>');
         this.scoreDiv.attr('id', 'high-score');
-        this.scoreDiv.html('<h2>SCORES</h2>')
+        this.scoreDiv.html('<h2>LAST 5 SCORES</h2>');
         for(var key in localStorage) {
             this.scoreDiv.append(localStorage.getItem(key));
             this.scoreDiv.append('<br>');
@@ -245,6 +245,18 @@ Tetriso.prototype = {
         var name = form[0].value;
         var time = Date.now();
         var score = event.data.score;
+        if (localStorage.length > 4) {
+            var min = -1;
+            for(var key in localStorage) {
+                if (min === -1) {
+                    min = key;
+                }
+                if (min > key) {
+                    min = key;
+                }
+            }
+            localStorage.removeItem(min);
+        }
         localStorage.setItem(time, name + " :  " + score);
         event.preventDefault();
     },
