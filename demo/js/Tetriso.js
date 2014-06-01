@@ -217,6 +217,14 @@ Tetriso.prototype = {
     },
 
     showHighScore: function() {
+        if (this.infoShowed) {
+            this.infoDiv.remove();
+            this.infoShowed = false;
+        }        
+        if (this.controlsShowed) {
+            this.controlsDiv.remove();
+            this.controlsShowed = false;
+        }
         this.scoreDiv = $('<div></div>');
         this.scoreDiv.attr('id', 'high-score');
         this.scoreDiv.html('<h2>SCORES</h2>')
