@@ -1,4 +1,5 @@
-function Playfield(sizeY, sizeX) {
+function Playfield(sizeY, sizeX, tetrisoGame) {
+    this.tetrisoGame = tetrisoGame;
     this.canvas = $('canvas#playfield');
     this.leftPane = $('canvas#leftField');
     this.rightPane = $('canvas#rightField');
@@ -20,14 +21,14 @@ function Playfield(sizeY, sizeX) {
     this.fillStyle = 'rgba(25,25,25,0.7)';
     this.gamePaused = true;
     this.level = 1;
-    this.messageCenter = document.querySelector('div#message-center');
-    this.pauseMessage = document.createElement('div');
-    this.pauseMessage.setAttribute('id', 'message');
-    this.pauseMessage.innerHTML = 'Paused ... <br /> Press play in menu...';
-    this.pauseMessage.style.lineHeight = '1.5em';
-    this.levelUpMessage = document.createElement('div');
-    this.levelUpMessage.setAttribute('id', 'message');
-    this.levelUpMessage.innerHTML = '!!! Level UP !!!';    
+    this.messageCenter = $('div#message-center');
+    this.pauseMessage = $('<div></div>');
+    this.pauseMessage.attr('id', 'message');
+    this.pauseMessage.html('Paused ... <br /> Press play in menu...');
+    this.pauseMessage.css('lineHeight', '1.5em');
+    this.levelUpMessage = $('<div></div>');
+    this.levelUpMessage.attr('id', 'message');
+    this.levelUpMessage.html('!!! Level UP !!!');
     this.sounds = [];
     this.sounds['success'] = new Howl({
                 urls: ['./sound/success.mp3', './sound/success.ogg'],
@@ -48,6 +49,7 @@ Playfield.prototype = {
         this.score = 0;
         this.lineCounter = 0;
         this.level = 1;
+        this.gameOver = false;
         this.playMatrix = new PlayMatrix(this.sizeY, this.sizeX);
         this.playMatrix.init();
         this.drawGrid();
@@ -121,6 +123,11 @@ Playfield.prototype = {
     },
 
     runLoop: function() {
+        if (this.gameOver) {
+            clearInterval(this.loopInterval_id);
+            this.tetrisoGame.gameOver();
+            return;
+        }
         this.moveTerminoDown();
     },
 
@@ -233,24 +240,26 @@ Playfield.prototype = {
     },
 
     stashTermino: function() {
-        if (!this.gamePaused) {
-            if (this.canStashTermino) {
-                this.canStashTermino = false;
-                if (this.terminoOnHold == null) {
-                    this.terminoOnHold = this.termino;
-                    this.startNewTermino();
-                } else {
-                    var terminoToStart = this.terminoOnHold;
-                    this.terminoOnHold = this.termino;
-                    this.startNewTermino(terminoToStart, this.nextTermino);
+        if (!this.gameOver) {
+            if (!this.gamePaused) {
+                if (this.canStashTermino) {
+                    this.canStashTermino = false;
+                    if (this.terminoOnHold == null) {
+                        this.terminoOnHold = this.termino;
+                        this.startNewTermino();
+                    } else {
+                        var terminoToStart = this.terminoOnHold;
+                        this.terminoOnHold = this.termino;
+                        this.startNewTermino(terminoToStart, this.nextTermino);
+                    }
+                    this.redraw();
                 }
-                this.redraw();
             }
         }
     },    
 
     rotateTermino: function() {
-        if (!this.gamePaused) {
+        if (this.isGameRunning()) {
             if (this.termino !== null) {
                 var terminoCopy = this.termino.clone();
                 terminoCopy.rotate();
@@ -338,7 +347,7 @@ Playfield.prototype = {
     },
 
     moveTerminoLeft: function() {
-        if (!this.gamePaused) {
+        if (this.isGameRunning()) {
             if (this.termino !== null) {
                 if (this.playMatrix.moveAllowed(-1,0,this.termino)) {
                     this.termino.moveLeft();
@@ -349,7 +358,7 @@ Playfield.prototype = {
     },
 
     moveTerminoRight: function() {
-        if (!this.gamePaused) {
+        if (this.isGameRunning()) {
             if (this.termino !== null) {
                 if (this.playMatrix.moveAllowed(1,0,this.termino)) {
                     this.termino.moveRight();
@@ -360,7 +369,7 @@ Playfield.prototype = {
     },
 
     moveTerminoDown: function() {
-        if (!this.gamePaused) {
+        if (this.isGameRunning()) {
             if (this.termino !== null) {
                 if (this.playMatrix.moveAllowed(0,1,this.termino)) {
                     this.termino.moveDown();
@@ -370,7 +379,8 @@ Playfield.prototype = {
                     var terminoToSeal = this.termino;
                     this.termino = null;
                     setTimeout(function() {
-                        _this.sealTermino(terminoToSeal);                    
+                        _this.sealTermino(terminoToSeal);
+                        _this.startNewTermino();                   
                     },100);
                 }
                 this.redraw();
@@ -379,10 +389,9 @@ Playfield.prototype = {
     },
 
     sealTermino: function(termino) {
-        this.playMatrix.sealTermino(termino);
-        this.checkLineComplete(termino);
-        this.startNewTermino();
-        this.canStashTermino = true;
+            this.playMatrix.sealTermino(termino);
+            this.checkLineComplete(termino);
+            this.canStashTermino = true;
     },
 
     testGameOver: function() {
@@ -391,13 +400,10 @@ Playfield.prototype = {
         for (var i = 0; i < this.hideY; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] !== 0) {
-                    gameOver = true;
+                    this.gameOver = true;
                 }
             };
         };
-        if (gameOver) {
-            alert('GAME OVER');
-        }
     },
 
     checkLineComplete: function(termino) {
@@ -463,11 +469,11 @@ Playfield.prototype = {
     },
 
     showMessage: function(div) {        
-        this.messageCenter.appendChild(div);
+        this.messageCenter.append(div);
     },
 
     hideMessage: function(div) {
-        this.messageCenter.removeChild(div);
+        div.remove();
     },
 
     redrawScore: function() {
@@ -479,6 +485,21 @@ Playfield.prototype = {
         if (this.score > this.level * 5000) {
             this.levelUp();
         }
+    },
+
+    isGameRunning: function() {
+        if (this.gameOver || this.gamePaused) {
+            return false;
+        }
+        return true;
+    },
+
+    isGameOver: function() {
+        return this.gameOver;
+    },
+
+    getGameOverData: function() {
+        return {'gameOver': this.gameOver, 'score': this.score, 'lines': this.lineCounter, 'level': this.level };
     }
 
 };
