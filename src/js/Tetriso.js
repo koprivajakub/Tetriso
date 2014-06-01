@@ -190,7 +190,7 @@ Tetriso.prototype = {
             this.controlsDiv.remove();
             this.controlsShowed = false;
         } else {
-            this.pause();            
+            this.pause();       
             this.messageCenter.append(this.controlsDiv);
             this.controlsShowed = true;
         }
@@ -217,14 +217,25 @@ Tetriso.prototype = {
     },
 
     showHighScore: function() {
+        this.pause();
+        if (this.infoShowed) {
+            this.infoDiv.remove();
+            this.infoShowed = false;
+        }        
+        if (this.controlsShowed) {
+            this.controlsDiv.remove();
+            this.controlsShowed = false;
+        }
+        if (this.gameOverShowed) {
+            this.gameOverDiv.remove();
+            this.controlsShowed = false;
+        }
         this.scoreDiv = $('<div></div>');
         this.scoreDiv.attr('id', 'high-score');
-        this.scoreDiv.html('<h2>SCORES</h2>')
+        this.scoreDiv.html('<h2>LAST 5 SCORES</h2>');
         for(var key in localStorage) {
-            if (!isNaN(localStorage.getItem(key))) {
-                this.scoreDiv.append(localStorage.getItem(key));
-                this.scoreDiv.append('<br>');
-            }
+            this.scoreDiv.append(localStorage.getItem(key));
+            this.scoreDiv.append('<br>');
         }
         this.messageCenter.append(this.scoreDiv);
     },
@@ -234,8 +245,19 @@ Tetriso.prototype = {
         var name = form[0].value;
         var time = Date.now();
         var score = event.data.score;
-        localStorage.setItem(time, score);
-        console.log(localStorage.length);        
+        if (localStorage.length > 4) {
+            var min = -1;
+            for(var key in localStorage) {
+                if (min === -1) {
+                    min = key;
+                }
+                if (min > key) {
+                    min = key;
+                }
+            }
+            localStorage.removeItem(min);
+        }
+        localStorage.setItem(time, name + " :  " + score);
         event.preventDefault();
     },
 
