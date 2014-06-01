@@ -4,6 +4,9 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="css/screen.css">
+    <meta charset=utf-8>
+    <meta name=description content="">
+    <meta name=viewport content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -14,7 +17,7 @@
             <aside>
                 Stash
             </aside>
-            <canvas id="leftField" width="128px" height="128px"></canvas>
+            <canvas id="leftField" width="128" height="128"></canvas>
             <nav id="menu">
             <h2>Menu</h2>
             <div>&darr; &darr; &darr;</div>
@@ -27,21 +30,21 @@
                     </li>
                     <li><a href="#restart">Restart</a>
                     </li>
-                    <!-- <li><a href="#high-score">High score</a>
-                    </li> -->
+                    <li><a href="#high-score">High score</a>
+                    </li>
                     <li><a href="#mute">Mute sounds</a>
                     </li>
                 </ul>
             </nav>
         </div>
         <div class="align-left" id="tetrisGame">
-            <canvas id="playfield" width="320px" height="704px"></canvas>
+            <canvas id="playfield" width="320" height="704"></canvas>
         </div>
         <div class="align-left" id="rightPane">
             <aside>
                 Next termino
             </aside>
-            <canvas id="rightField" width="128px" height="128px"></canvas>
+            <canvas id="rightField" width="128" height="128"></canvas>
             <div id="score">
                 <aside id="lines-number">
                     Lines
@@ -58,8 +61,18 @@
                     <br />
                     1
                 </aside>
+                <div>
+                <p class="vcard"> 
+                    <span class="fn">Jakub Kopřiva</span> 
+                    <span class="org">Student at CTU in Prague</span>
+                </p>
+                <p>
+                    <span>&copy; 2014</span>
+                </p>
+                </div>
             </div>
         </div>
+    </div>
         <script src="js/libs/jquery-2.1.0.min.js"></script>
         <script src="js/libs/jcanvas.min.js"></script>
         <script src="js/libs/howler.min.js"></script>

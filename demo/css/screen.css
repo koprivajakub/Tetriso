@@ -9,8 +9,8 @@ body {
 }
 
 #content canvas#playfield {
-/*	width: 160px; */
-/*	height: 352px; */
+	/*width: 160px; */
+	/*height: 352px; */
 }
 #content #leftPane {
 	margin: 0 10px 0 0;
@@ -102,6 +102,36 @@ div#info {
 	background: rgba(250,250,250,0.8);
 }
 
+div#gameOver {
+	margin: 10px 0 0 0;
+	border-radius: 10px;
+	line-height: 1em;
+	text-align: center;
+	text-shadow: 2px 2px #999;
+	padding: 10px;
+	color: #000;
+	position: relative;
+	left: -172px;
+	width: 280px;
+	height: 300px;
+	background: rgba(250,250,250,0.8);
+}
+
+div#high-score {
+	margin: 10px 0 0 0;
+	border-radius: 10px;
+	line-height: 1em;
+	text-align: center;
+	text-shadow: 2px 2px #999;
+	padding: 10px;
+	color: #000;
+	position: relative;
+	left: -172px;
+	width: 280px;
+	height: 300px;
+	background: rgba(250,250,250,0.8);
+}
+
 div#info a {
 	color: #000;	
 }
@@ -112,8 +142,33 @@ div#info h2 {
 	margin: 10px;
 }
 
+div#gameOver h2 {
+	text-align: center;
+	font-size: 2em;
+	margin: 30px 0 30px 0;	
+}
+
+div#high-score h2 {
+	text-align: center;
+	font-size: 2em;
+	margin: 30px 0 30px 0;	
+}
+
+div#gameOver p:last-child {
+	margin: 30px 0 0 0;
+	line-height: 1.2em;
+	font-size: 1.2em;
+}
+
 div#score {
 	height: 320px;
 	color: #fff;
 	background: rgba(25,25,25,0.7);
+}
+
+p.vcard > span {
+	margin: 0 10px;
+	display: block;
+	font-size: 0.5em;
+	text-align: left;
 }
