@@ -437,25 +437,25 @@ Playfield.prototype = {
         switch (lines) {
             case 1:
                 this.score += (this.level*40);
-                message.innerHTML = '! GOOD !';
+                message.html('! GOOD !');
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 2:
                 this.score += (this.level*100);
-                message.innerHTML = '!! GREAT !!';
+                message.html('!! GREAT !!');
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 3:
                 this.score += (this.level*300);
-                message.innerHTML = '!!! AWESOME !!!';
+                message.html('!!! AWESOME !!!');
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;
             case 4:
                 this.score += (this.level*1200);
-                message.innerHTML = '!!!! SPECTACULAR !!!!';
+                message.html('!!!! SPECTACULAR !!!!');
                 setTimeout(this.showMessage.bind(this,message), 1000);
                 setTimeout(this.hideMessage.bind(this, message), 2000);
                 break;    
