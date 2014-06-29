@@ -103,9 +103,7 @@ Playfield.prototype = {
             this.showMessage(this.levelUpMessage);
             setTimeout(this.hideMessage.bind(this, this.levelUpMessage), 1000);
             this.sounds['lvlUp'].play();
-            this.interval = 1000 - 100*(this.level-1);
-            var levelElement = $('aside#level-number');
-            levelElement.html("Level <br />" + this.level);
+            this.interval = 1000 - 100*(this.level-1);            
         }
         if (this.loopInterval_id) {
             clearInterval(this.loopInterval_id);        
@@ -479,6 +477,10 @@ Playfield.prototype = {
 
         var scoreElement = $('aside#score-number');
         scoreElement.html("Score <br />" + this.score);
+
+        var levelElement = $('aside#level-number');
+        levelElement.html("Level <br />" + this.level);
+
         if (this.score > this.level * 5000) {
             this.levelUp();
         }
