@@ -49,6 +49,7 @@ Playfield.prototype = {
         this.score = 0;
         this.lineCounter = 0;
         this.level = 1;
+        this.interval = 1000;
         this.gameOver = false;
         this.playMatrix = new PlayMatrix(this.sizeY, this.sizeX);
         this.playMatrix.init();
